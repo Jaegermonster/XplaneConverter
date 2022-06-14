@@ -38,7 +38,7 @@ def load_data(filename, MEAN_SPAN, DELTA_T):
     df = data1.get_df()
     print('FINISHED...\n')
     m2ft = 3.28084
-    df['altitude'] = df.alt * m2ft
+    df['GPS altitude'] = df.alt * m2ft
     return df, data1
    
 def plot_subplots(df, ROW_HEIGHT, ROW_WIDTH, plot_list, units):  
@@ -74,7 +74,7 @@ if __name__ == '__main__':
         df, data1 = load_data(filename, MEAN_SPAN, DELTA_T)
     
         df_short = df.loc[::100]
-        plot_list = ['altitude', 'VVI', 'GS', 'TH', 'pitch_angle', 'bank_angle', 'cum_distance_3D',  'energy']
+        plot_list = ['GPS altitude', 'VVI', 'GS', 'TH', 'pitch_angle', 'bank_angle', 'cum_distance_3D',  'energy']
         units = ['[ ft ]', '[ ft/min ]', '[ kts ]', '[ deg ]', '[ deg ]', '[ deg ]', '[ m ]', '[ - ]']
         
         with c1.expander("Change plot size"):
