@@ -53,26 +53,7 @@ def plot_subplots(df, ROW_HEIGHT, ROW_WIDTH, plot_list, units):
         fig.update_yaxes(title_text=signal + '<br>' + unit, row = idx+1, col = 1)
     fig.update_layout( autosize=False, width=ROW_WIDTH )
     c1.plotly_chart(fig)
-    
-def write_xplane_fdr(df, filename):
-    new_line = ''
-    m2ft = 3.28084
-    filename = filename.split('.')[0] + '.fdr'
-    for i in range(0,len(df.lat)):
-        new_line = new_line + 'DATA, ' + str(df.recordingTime[i]) + ', 15, ' + str(df.lon[i]) + ', ' + str(df.lat[i]) + ', ' + str(df.alt[i] * m2ft) + ', 0,0,0,0, ' + str(df.pitch_angle[i]) + ', ' + str(df.bank_angle[i]) + ', ' + str(df.TH[i]) + ',' + str(df.GS[i])  + ',' + str(df.VVI[i]) + ',0,0,0.5, 0,0, 0,0,0,0,1,1,1,1,0, 11010,10930,4,4,90,270,0,0,10,10,1,1,10,10,0,0,0,0,10,10,0,0,0,0,0,0,0,0,0,0,500, 29.92,0,0,0,0,0,0 , 1,1,0,0 , 2000,2000,0,0 , 2000,2000,0,0 , 30,30,0,0 , 100,100,0,0 , 100,100,0,0 , 0,0,0,0 , 0,0,0,0 , 1500,1500,0,0 , 400,400,0,0 , 1000,1000,0,0 , 1000,1000,0,0 , 0,0,0,0,\n'
-    #input file
-    fin = open('template.fdr', "rt")
-    #output file to write the result to
-    fout = open(filename, "wt")  # Name newTexFile with a consecutive name (Rechnungsnummer). 
-    # Manipulate texfile: Import calculated values into mainTEX lines. 
-    #for each line in the input file
-    for line in fin:
-     	#read replace the string and write to output file
-     	fout.write(line.replace('xxx', str(new_line)))
-    # #close input and output files
-    fin.close()
-    fout.close()
-    
+
 
 if __name__ == '__main__':
     DELTA_T = 1.0  # UPT/ASD = 0.005 | KML = 0.1 | FDR = 1.0
